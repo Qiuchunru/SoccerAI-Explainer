@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
+from prompts import build_prompt
 
 app = FastAPI()
 
@@ -21,7 +23,12 @@ async def analyze(request: Request):
     data = await request.json()
     text = data.get("text", "")
 
+    prompt = build_prompt(text)
+
+    # ===== 模拟 IBM Granite（你之后替换这里）=====
+    ai_response = f"[MOCK AI RESPONSE]\n\n{prompt}"
+
     return JSONResponse({
         "input": text,
-        "analysis": "This is a placeholder AI response. Next step: IBM Granite integration."
+        "analysis": ai_response
     })
