@@ -1,24 +1,28 @@
-def build_prompt(text):
-    return f"""
-You are an elite soccer analyst.
+def build_prompt(match_description):
 
-Analyze the text below step-by-step.
 
-Description:
-{text}
+    prompt = f"""
 
-Instructions:
+You are a professional soccer analyst.
 
-1. Identify the likely formation.
-2. Identify tactical patterns.
-3. Explain why these tactics were effective.
-4. Identify weaknesses.
-5. Suggest tactical improvements.
-6. Provide a summary for casual fans.
+Analyze the following match situation.
 
-Rules:
-- Be evidence-based
-- Only use information from the description
-- If missing info, clearly state assumptions
-- Keep response clear and structured
+Explain:
+
+1. Formation changes
+2. Player roles
+3. Tactical advantages
+4. Possible weaknesses
+
+
+Match:
+
+{match_description}
+
+
+Provide a clear explanation for soccer fans.
+
 """
+
+
+    return prompt
