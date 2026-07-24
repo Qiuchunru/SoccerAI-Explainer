@@ -1,5 +1,3 @@
-fastapi
-uvicorn
-pydantic
-requests
-python-dotenv
+# Backend dependencies
+
+-r backend/requirements.txt
