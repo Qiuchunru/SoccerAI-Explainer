@@ -1,63 +1,75 @@
-
 """
-AI Tactical Analysis Module
+AI Analysis Module
 
-This module handles AI-based soccer tactical explanations.
+Handles soccer tactical explanation generation.
 
-Currently uses a prompt-based simulation.
-Can be replaced with IBM Granite API integration.
+Currently uses prompt-based simulation.
+Designed for IBM Granite integration.
 """
+
+
+from prompts import build_prompt
+
 
 
 def analyze_match(match_description):
-    """
-    Analyze soccer match description and generate tactical explanation.
-
-    Args:
-        match_description (str):
-            User provided match scenario
-
-    Returns:
-        str:
-            AI generated tactical analysis
-    """
 
 
-    analysis = f"""
-Soccer Tactical Analysis
+    prompt = build_prompt(
+        match_description
+    )
+
+
+    # Future:
+    # Replace this section with IBM Granite API call
+
+
+    response = f"""
+⚽ Soccer Tactical Analysis
+
 
 Match Situation:
+
 {match_description}
 
 
-Tactical Explanation:
 
-The described situation shows a tactical adjustment
-designed to improve team performance.
+AI Explanation:
 
 
-Key Points:
+1. Tactical Overview
 
-1. Formation Analysis:
-The team changed its structure to create better
-balance between defense and attack.
-
-
-2. Player Roles:
-Players need to adapt their positioning,
-movement, and responsibilities.
+The team appears to adjust its strategy
+based on match conditions.
 
 
-3. Strategic Impact:
-The tactical change may create more attacking
-opportunities while maintaining defensive stability.
+
+2. Formation Impact
+
+The formation change affects:
+
+- Defensive structure
+- Midfield control
+- Attacking opportunities
 
 
-AI Insight:
 
-This tactical decision demonstrates how managers
-adapt their strategy based on match conditions.
+3. Player Roles
+
+Players need to adapt their positioning
+and responsibilities.
+
+
+
+4. Strategic Insight
+
+The tactical decision demonstrates how
+coaches use formations and player movement
+to gain advantages.
+
+
+Generated using AI tactical reasoning.
 """
 
 
-    return analysis
+    return response
