@@ -1,43 +1,102 @@
-
 import { useState } from "react";
+import axios from "axios";
 
-export default function App() {
-  const [text, setText] = useState("");
-  const [result, setResult] = useState("");
 
-  const analyze = async () => {
-    const res = await fetch("http://localhost:8000/analyze", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text }),
-    });
+function App(){
 
-    const data = await res.json();
-    setResult(data.analysis);
-  };
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Soccer AI Explainer</h1>
+const [match,setMatch]=useState("");
 
-      <textarea
-        rows={10}
-        cols={60}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter soccer match description..."
-      />
+const [result,setResult]=useState("");
 
-      <br /><br />
 
-      <button onClick={analyze}>
-        Analyze
-      </button>
 
-      <h2>Result</h2>
-      <pre>{result}</pre>
-    </div>
-  );
+async function analyze(){
+
+
+const response =
+await axios.post(
+"http://localhost:8000/analyze",
+{
+description:match
 }
+);
+
+
+setResult(
+response.data.analysis
+);
+
+
+}
+
+
+
+return (
+
+<div style={{
+padding:"40px",
+fontFamily:"Arial"
+}}>
+
+
+<h1>
+⚽ Soccer AI Explainer
+</h1>
+
+
+<p>
+AI-powered soccer tactical analysis assistant
+</p>
+
+
+<textarea
+
+rows="8"
+
+cols="60"
+
+placeholder="Describe a soccer match situation..."
+
+value={match}
+
+onChange={
+(e)=>setMatch(e.target.value)
+}
+
+/>
+
+
+
+<br/>
+
+
+<button onClick={analyze}>
+
+Analyze
+
+</button>
+
+
+
+<h2>
+Analysis Result
+</h2>
+
+
+<pre>
+
+{result}
+
+</pre>
+
+
+</div>
+
+);
+
+
+}
+
+
+export default App;
